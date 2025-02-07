@@ -122,7 +122,7 @@
 
   // Calendar initialization
   const initializeCalendarDays = () => {
-    const startDate = new Date('2025-04-14');
+    const startDate = new Date('2025-01-14');
     const currentDate = new Date();
     // const currentDate = new Date('2025-03-12T00:00:00Z');
     const timeDiff = currentDate - startDate;
