@@ -26,6 +26,9 @@ jobs:
         git commit -m "Update script to version ${TIMESTAMP}"
 
     - name: Push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Используем автоматический токен для пуша
       run: |
-        # Пушим изменения обратно в репозиторий
-        git push origin main
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
