@@ -1,0 +1,31 @@
+name: Update GitHub Pages Cache
+
+on:
+  push:
+    branches:
+      - main  # или ваша основная ветка (например, gh-pages)
+
+jobs:
+  update_cache:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Generate new script version
+      run: |
+        # Получаем текущую временную метку
+        TIMESTAMP=$(date +%s)
+
+        # Переименовываем файл index.js с уникальным именем
+        mv index.js index-${TIMESTAMP}.js
+
+        # Добавляем новый файл в репозиторий
+        git add index-${TIMESTAMP}.js
+        git commit -m "Update script to version ${TIMESTAMP}"
+
+    - name: Push changes
+      run: |
+        # Пушим изменения обратно в репозиторий
+        git push origin main
