@@ -21,7 +21,6 @@ jobs:
         # Переименовываем файл index.js с уникальным именем
         mv index.js index-${TIMESTAMP}.js
 
-        # Настроим Git для коммита
         git config --global user.name "AlexxxPetrov"
         git config --global user.email "twisted.transisitor.2019@gmail.com"
 
