@@ -21,6 +21,10 @@ jobs:
         # Переименовываем файл index.js с уникальным именем
         mv index.js index-${TIMESTAMP}.js
 
+        # Настроим Git для коммита
+        git config --global user.name "AlexxxPetrov"
+        git config --global user.email "twisted.transisitor.2019@gmail.com"
+
         # Добавляем новый файл в репозиторий
         git add index-${TIMESTAMP}.js
         git commit -m "Update script to version ${TIMESTAMP}"
@@ -29,6 +33,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Используем автоматический токен для пуша
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
